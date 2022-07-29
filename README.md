@@ -28,9 +28,9 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🚈 通过 Railway 部署](#-通过-Railway-部署)（推荐没有自己服务器的用户使用此方案）
 
-[🧊 通过 Heroku 部署](#-通过-Heroku-部署) [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)（同上）
+[🧊 通过 Heroku 部署](#-通过-Heroku-部署)
 
-[☁ 通过 各种云函数 部署](#-通过各种云函数部署)（同上）
+[☁ 通过 各种云函数 部署](#-通过各种云函数部署)
 
 [🚧 直接拉取源码部署](#-直接拉取源码部署)
 
@@ -77,9 +77,9 @@ Thanks for non-commercial open source development authorization by JetBrains.
 
 ### 🍭 效果
 
-[![邮件示例](https://s4.ax1x.com/2022/02/26/bZr7WQ.png)](https://s4.ax1x.com/2022/02/26/bZr7WQ.png)
+无论是续期成败或者程序执行出错，都会收到脚本发出的通知。如果是续期成败相关的通知，通知会包括未续期域名的到期天数等内容。*此处展示的是通知邮件的内容。*
 
-无论是续期成败或者脚本执行出错，都会收到的程序发出的邮件。如果是续期成败相关的邮件，邮件会包括未续期域名的到期天数等内容。 邮件参考了微信发送的注销公众号的邮件样式。
+<a href="https://s4.ax1x.com/2022/02/26/bZr7WQ.png"><img src="https://s4.ax1x.com/2022/02/26/bZr7WQ.png" alt="邮件示例" border="0" width="670" height="540" /></a>
 
 ### 🎁 事前准备
 
@@ -122,6 +122,8 @@ Thanks for non-commercial open source development authorization by JetBrains.
     <summary>设置Gmail</summary>
 <br>
 
+*推荐打开浏览器隐私模式后再登录 gmail 进行设置，防止当你有多个 gmail 账户时无法跳到正确的设置地址。*
+
 1、在`设置>转发和POP/IMAP`中，勾选
 
 - 对所有邮件启用 POP
@@ -131,23 +133,16 @@ Thanks for non-commercial open source development authorization by JetBrains.
 
 然后保存更改。
 
-2、允许不够安全的应用
+2、开启两步验证
 
-*推荐打开浏览器隐私模式后再登录 gmail 进行设置，防止当你有多个 gmail 账户时无法跳到正确的设置地址。*
+参考官方文档：[开启两步验证](https://support.google.com/accounts/answer/185839)
 
-登录谷歌邮箱后，访问 [谷歌权限设置界面](https://myaccount.google.com/u/0/lesssecureapps?pli=1&pageId=none) ，启用允许不够安全的应用。
+3、配置使用应用专用密码登录邮箱
 
-![gmail配置02](https://s2.ax1x.com/2020/01/31/1392KH.png "gmail配置02")
+参考官方文档：[使用应用专用密码登录](https://support.google.com/mail/answer/185833?hl=zh-Hans)
 
-另外，若遇到提示
-> 不允许访问账户
+**由于 Gmail 已不再支持“不安全的登录方式”，故目前只能使用账户加应用专用密码的方式登录。**
 
-登录谷歌邮箱后，去 [gmail的这个界面](https://accounts.google.com/b/0/DisplayUnlockCaptcha) 点击允许。这种情况较为少见。
-
-**注意：由于直接使用 gmail
-密码登录容易触发谷歌安全机制，故推荐参考官方文档启用应用专用密码：[https://support.google.com/mail/answer/185833?hl=zh-Hans](https://support.google.com/mail/answer/185833?hl=zh-Hans)**
-
-**使用账户+应用专用密码登录，就算频繁换 ip 登录 gmail 也不会触发谷歌安全机制。**
 ***
 
 </details>
@@ -322,19 +317,19 @@ docker run -d --name freenom --restart always -v $(pwd):/conf -v $(pwd)/logs:/ap
     <summary>点我查看 .env 文件中部分配置项的含义</summary>
 <br>
 
-| 变量名 | 含义 | 默认值 | 是否必须 |                                                                        备注                                                                        |
-| :---: | :---: |:---:|:----:|:------------------------------------------------------------------------------------------------------------------------------------------------:|
-| FREENOM_USERNAME | Freenom 账户 |  -  |  是   |                                           只支持邮箱账户，如果你是使用第三方社交账户登录的用户，请在 Freenom 管理页面绑定邮箱，绑定后即可使用邮箱账户登录                                           |
-| FREENOM_PASSWORD | Freenom 密码 |  -  |  是   |                                                            某些特殊字符可能需要转义，详见`.env`文件内注释                                                            |
-| MULTIPLE_ACCOUNTS | 多账户支持 |  -  |  否   |                                                           多个账户和密码的格式必须是“`<账户1>@<密码1>\                                                            |<账户2>@<密码2>\|<账户3>@<密码3>`”，注意不要省略“<>”符号，否则无法正确匹配。如果设置了多账户，上面的`FREENOM_USERNAME`和`FREENOM_PASSWORD`可不设置 |
-| MAIL_USERNAME | 机器人邮箱账户 |  -  |  否   | 支持`Gmail`、`QQ邮箱`、`163邮箱`以及`Outlook邮箱`，尽可能使用`163邮箱`或者`QQ邮箱`而非`Gmail`。因为谷歌的安全机制，每次在新设备登录 `Gmail` 都会先被限制，需要手动解除限制才行。具体的配置方法参考「 [配置送信功能](#-配置送信功能) 」 |
-| MAIL_PASSWORD | 机器人邮箱密码 |  -  |  否   |                                                          `Gmail`填密码，`QQ邮箱`或`163邮箱`填授权码                                                           |
-| TO | 接收通知的邮箱 |  -  |  否   |                                                           你自己最常用的邮箱，用来接收机器人邮箱发出的域名相关邮件                                                           |
-| MAIL_ENABLE | 是否启用邮件推送功能 | `0` |  否   |                           `1`：启用<br>`0`：不启用<br>默认不启用，如果设为`1`，启用邮件推送功能，则上面的`MAIL_USERNAME`、`MAIL_PASSWORD`、`TO`变量变为必填项                            |
-| TELEGRAM_CHAT_ID | 你的`chat_id` |  -  |  否   |                                                      通过发送`/start`给`@userinfobot`可以获取自己的`id`                                                      |
+| 变量名 | 含义 | 默认值 | 是否必须 |                                             备注                                              |
+| :---: | :---: |:---:|:----:|:-------------------------------------------------------------------------------------------:|
+| FREENOM_USERNAME | Freenom 账户 |  -  |  是   |                只支持邮箱账户，如果你是使用第三方社交账户登录的用户，请在 Freenom 管理页面绑定邮箱，绑定后即可使用邮箱账户登录                 |
+| FREENOM_PASSWORD | Freenom 密码 |  -  |  是   |                                 某些特殊字符可能需要转义，详见`.env`文件内注释                                  |
+| MULTIPLE_ACCOUNTS | 多账户支持 |  -  |  否   |                                 多个账户和密码的格式必须是“`<账户1>@<密码1>\|<账户2>@<密码2>\|<账户3>@<密码3>`”，注意不要省略“<>”符号，否则无法正确匹配。如果设置了多账户，上面的`FREENOM_USERNAME`和`FREENOM_PASSWORD`可不设置 |
+| MAIL_USERNAME | 机器人邮箱账户 |  -  |  否   |                            支持`Gmail`、`QQ邮箱`、`163邮箱`以及`Outlook邮箱`                            |
+| MAIL_PASSWORD | 机器人邮箱密码 |  -  |  否   |                              `Gmail`填应用专用密码，`QQ邮箱`或`163邮箱`填授权码                              |
+| TO | 接收通知的邮箱 |  -  |  否   |                                你自己最常用的邮箱，用来接收机器人邮箱发出的域名相关邮件                                 |
+| MAIL_ENABLE | 是否启用邮件推送功能 | `0` |  否   | `1`：启用<br>`0`：不启用<br>默认不启用，如果设为`1`，启用邮件推送功能，则上面的`MAIL_USERNAME`、`MAIL_PASSWORD`、`TO`变量变为必填项 |
+| TELEGRAM_CHAT_ID | 你的`chat_id` |  -  |  否   |                           通过发送`/start`给`@userinfobot`可以获取自己的`id`                            |
 | TELEGRAM_BOT_TOKEN | 你的`Telegram bot`的`token` |  -  |  否   ||
-| TELEGRAM_BOT_ENABLE | 是否启用`Telegram Bot`推送功能 | `0` |  否   |                               `1`：启用<br>`0`：不启用<br>默认不启用，如果设为`1`，则必须设置上面的`TELEGRAM_CHAT_ID`和`TELEGRAM_BOT_TOKEN`变量                               |
-| NOTICE_FREQ | 通知频率 | `1` |  否   |                                                            `0`：仅当有续期操作的时候<br>`1`：每次执行                                                            |
+| TELEGRAM_BOT_ENABLE | 是否启用`Telegram Bot`推送功能 | `0` |  否   |    `1`：启用<br>`0`：不启用<br>默认不启用，如果设为`1`，则必须设置上面的`TELEGRAM_CHAT_ID`和`TELEGRAM_BOT_TOKEN`变量     |
+| NOTICE_FREQ | 通知频率 | `1` |  否   |                                 `0`：仅当有续期操作的时候<br>`1`：每次执行                                  |
 
 **更多配置项含义，请参考 [.env.example](https://github.com/luolongfei/freenom/blob/main/.env.example) 文件中的注释。**
 
@@ -424,7 +419,15 @@ systemctl restart docker
 
 ### 🧊 通过 Heroku 部署
 
-点击下方按钮，可以一键部署到 Heroku，不过由于 Heroku 可能会休眠，所以稳定性有待验证。
+*由于休眠问题以及 Cron 问题还没有比较完美的解决方案，故暂时不推荐通过这种方式部署。*
+
+点击下方按钮，可以一键部署到 Heroku，不过由于 Heroku 免费版本每 30 分钟休眠，你可以将创建的 app 地址交给 [https://kaffeine.herokuapp.com](https://kaffeine.herokuapp.com/) ，让它每隔一段时间就 ping 一下你的地址，使得你的容器保持唤醒状态。而 Heroku 容器每个月最多只能清醒 500 个小时，所以还是会面临休眠问题。除非你验证信用卡以获取 1000 小时运行时长。
+
+**注意，Heroku 还有个不太好处理的问题，在容器内部似乎不能正常使用 Cron 计划任务，可能跟每次由不同用户启动容器，且每次容器都位于不同的机器有关。只能使用 Heroku 提供的调度器，很不灵活，或者借助代码实现与 Cron 类似的功能。参考：**
+
+> [https://stackoverflow.com/a/2611936](https://stackoverflow.com/a/2611936)
+> 
+> [https://medartus.medium.com/how-to-use-cron-on-heroku-for-free-778d8602a622](https://medartus.medium.com/how-to-use-cron-on-heroku-for-free-778d8602a622)
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
@@ -510,7 +513,7 @@ PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
 
 ### 📰 更新日志
 
-此处只含最新版本的更新日志，完整的日志记录请参考 [Changelog.md](https://github.com/luolongfei/freenom/blob/main/Changelog.md)
+此处只含最新版本的更新日志，完整的日志记录请参考 [CHANGELOG.md](https://github.com/luolongfei/freenom/blob/main/CHANGELOG.md)
 
 #### [Unreleased](#)
 
