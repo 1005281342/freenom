@@ -26,9 +26,13 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 
 [🐳 通过 Docker 方式部署](#-通过-docker-部署)（推荐，最简单的部署方式之一）
 
-[🚈 通过 Railway 部署](#-通过-Railway-部署)（推荐没有自己服务器的用户使用此方案）
-
 [🧊 通过 Heroku 部署](#-通过-Heroku-部署)
+
+[🚈 通过 Railway 部署](#-通过-Railway-部署)
+
+[📦 通过 Koyeb 部署](#-通过-Koyeb-部署)（推荐没有自己服务器的用户使用此方案，一键部署）
+
+[🧪 通过 Mogenius 部署](#-通过-Mogenius-部署)（如果你无法注册 Koyeb 账户，可以考虑在 Mogenius 部署）
 
 [☁ 通过 各种云函数 部署](#-通过各种云函数部署)
 
@@ -58,8 +62,10 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
   仓库，然后在 [@Mattraks](https://github.com/Mattraks) 的提醒下，通过特别的方式恢复了本仓库。
 - 本次封禁导致的直接后果是以前的`issues`全部丢失，以及近`1.8k`的`star`数重新归零，在动力上面确实有受到影响，不过也不会有太大影响，本项目依然长期维护，如果项目有帮到你，欢迎 star。
 - 狡兔三窟，临时仓库 https://github.com/luolongfei/next-freenom 也是备用仓库，如若本仓库再次失联，可以移步到备用仓库获取最新消息，正常情况下以后的开发维护依然在本仓库进行。
-- 推荐 [🐳 通过 Docker 方式部署](#-通过-docker-部署)。如果你没有自己的服务器，可参考本文档 [🚈 通过 Railway 部署](#-通过-Railway-部署)
-  、[🧊 通过 Heroku 部署](#-通过-Heroku-部署)、[☁ 通过 各种云函数 部署](#-通过各种云函数部署) 等相关内容。
+- 推荐 [🐳 通过 Docker 方式部署](#-通过-docker-部署)。如果你没有自己的服务器，可参考本文档 [📦 通过 Koyeb 部署](#-通过-Koyeb-部署) 。
+- 热心网友创建了`Freenom 续期事务局`群组，可供交流、测试、反馈， **加入可直接访问 [https://t.me/freenom_auto_renew](https://t.me/freenom_auto_renew) ，或者扫码加入：**
+
+<a href="https://t.me/freenom_auto_renew"><img src="https://s3.bmp.ovh/imgs/2022/09/14/c09c155a66fddda1.png" alt="freenom_tg_group.png" border="0" width="220px" height="280px" /></a>
 
 ### 🌿 特别感谢 Special Thanks
 
@@ -68,7 +74,7 @@ Documentation: [English version](https://github.com/luolongfei/freenom/blob/main
 Thanks for non-commercial open source development authorization by JetBrains.
 
 <a href="https://www.jetbrains.com/?from=luolongfei/freenom" target="_blank" title="JetBrains Logo (Main) logo.">
-<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg" width='200px' height='200px' alt="JetBrains Logo (Main) logo.">
+<img src="https://resources.jetbrains.com/storage/products/company/brand/logos/jb_beam.svg" width="200px" height="200px" alt="JetBrains Logo (Main) logo.">
 </a>
 
 ### 📃 引言
@@ -79,7 +85,7 @@ Thanks for non-commercial open source development authorization by JetBrains.
 
 无论是续期成败或者程序执行出错，都会收到脚本发出的通知。如果是续期成败相关的通知，通知会包括未续期域名的到期天数等内容。*此处展示的是通知邮件的内容。*
 
-<a href="https://s4.ax1x.com/2022/02/26/bZr7WQ.png"><img src="https://s4.ax1x.com/2022/02/26/bZr7WQ.png" alt="邮件示例" border="0" width="670" height="540" /></a>
+<a href="https://s4.ax1x.com/2022/02/26/bZr7WQ.png"><img src="https://s4.ax1x.com/2022/02/26/bZr7WQ.png" alt="邮件示例" border="0" width="95%" height="100%" /></a>
 
 ### 🎁 事前准备
 
@@ -408,35 +414,45 @@ systemctl restart docker
 
 ***
 
+### 🧊 通过 Heroku 部署
+
+**Heroku 将于 2022-11-28 停止提供免费服务，所以，忘掉本文吧。官方通告：[https://blog.heroku.com/next-chapter](https://blog.heroku.com/next-chapter)**
+
+有关 【通过 Heroku 部署】 的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Heroku-%E9%83%A8%E7%BD%B2)
+
+***
+
 ### 🚈 通过 Railway 部署
 
-*推荐没有自己服务器的用户使用此方案。*
+*Railway 已更新服务条款，每月增加了使用时长限制，新的服务条款导致每月最多只能运行 21 天左右， **除非你验证了信用卡，则没有这个限制** 。详细条款内容参考 [此处](https://docs.railway.app/reference/pricing#execution-time-limit) 。*
 
 有关 【通过 Railway 部署】
 的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Railway-%E9%83%A8%E7%BD%B2)
 
 ***
 
-### 🧊 通过 Heroku 部署
+### 📦 通过 Koyeb 部署
 
-*由于休眠问题以及 Cron 问题还没有比较完美的解决方案，故暂时不推荐通过这种方式部署。*
+*推荐没有自己服务器的用户使用此方案部署。此方案完全免费。*
 
-点击下方按钮，可以一键部署到 Heroku，不过由于 Heroku 免费版本每 30 分钟休眠，你可以将创建的 app 地址交给 [https://kaffeine.herokuapp.com](https://kaffeine.herokuapp.com/) ，让它每隔一段时间就 ping 一下你的地址，使得你的容器保持唤醒状态。而 Heroku 容器每个月最多只能清醒 500 个小时，所以还是会面临休眠问题。除非你验证信用卡以获取 1000 小时运行时长。
+有关 【通过 Koyeb 部署】 的具体操作步骤请参考 [此处](https://github.com/luolongfei/freenom/wiki/%E9%80%9A%E8%BF%87-Koyeb-%E9%83%A8%E7%BD%B2)
 
-**注意，Heroku 还有个不太好处理的问题，在容器内部似乎不能正常使用 Cron 计划任务，可能跟每次由不同用户启动容器，且每次容器都位于不同的机器有关。只能使用 Heroku 提供的调度器，很不灵活，或者借助代码实现与 Cron 类似的功能。参考：**
+**在看完上行文档的具体内容，并且你确定你行后**，便可点击下方按钮，尝试一键部署：
 
-> [https://stackoverflow.com/a/2611936](https://stackoverflow.com/a/2611936)
-> 
-> [https://medartus.medium.com/how-to-use-cron-on-heroku-for-free-778d8602a622](https://medartus.medium.com/how-to-use-cron-on-heroku-for-free-778d8602a622)
+[![Deploy to Koyeb](https://www.koyeb.com/static/images/deploy/button.svg)](https://app.koyeb.com/deploy?type=docker&name=freenom&ports=80;http;/&env[FF_TOKEN]=20190214&env[SHOW_SERVER_INFO]=1&env[MOSAIC_SENSITIVE_INFO]=1&env[FREENOM_USERNAME]=&env[FREENOM_PASSWORD]=&env[MULTIPLE_ACCOUNTS]=&env[TELEGRAM_CHAT_ID]=&env[TELEGRAM_BOT_TOKEN]=&env[TELEGRAM_BOT_ENABLE]=0&image=docker.io/luolongfei/freenom:koyeb)
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+***
+
+### 🧪 通过 Mogenius 部署
+
+暂时没时间写详细教程，有兴趣的可以自己尝试一下。参考我此处的说明事项： [https://github.com/luolongfei/freenom/issues/146](https://github.com/luolongfei/freenom/issues/146) 
 
 ***
 
 ### ☁ 通过各种云函数部署
 
 所有云函数使用的是同一个压缩包，已做兼容处理，下载地址：
-[https://github.com/luolongfei/freenom/releases/download/v0.5/freenom_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.5/freenom_scf.zip)
+[https://github.com/luolongfei/freenom/releases/download/v0.5.1/freenom_scf.zip](https://github.com/luolongfei/freenom/releases/download/v0.5.1/freenom_scf.zip)
 。本文档会在发布新版的时候同步更新此处的压缩包下载地址，所以不必担心，你看到的下载地址指向的包一定是最新版本。
 
 下载后你将得到一个 zip 文件，将 zip 文件放到你能找到的任意目录，后面我们将以 zip 文件的形式上传到各种云函数。
@@ -519,11 +535,11 @@ PayPal: [https://www.paypal.me/mybsdc](https://www.paypal.me/mybsdc)
 
 - 解决 企业微信 因送信内容过长被截断问题
 
-#### [v0.5](https://github.com/luolongfei/freenom/releases/tag/v0.5) - 2022-05-15
+#### [v0.5.1](https://github.com/luolongfei/freenom/releases/tag/v0.5.1) - 2022-08-29
 
-- 增加支持 华为云函数、Railway 等部署方式
-- 支持在消息中显示服务器信息，该功能默认关闭
-- 优化部分代码逻辑
+- 支持一键部署至 Koyeb、Heroku 等平台，虽然 Heroku 马上要收费了，但 Koyeb 依然免费
+- 优化在各种环境下的目录读写权限判断
+- 支持给日志或者命令行输出内容中的敏感信息打马赛克，默认不启用
 
 ### 🎉 鸣谢
 
